@@ -1,0 +1,104 @@
+﻿{% extends 'ContactManagerApp/views/layout.html' %}
+{% block content %}
+    <div class="page-header col-md-12">
+        <div class="col-md-2">
+            <button class="btn btn-primary" onclick="document.location.href = {% url 'contact_new' %}">Add Contact</button>
+        </div>
+        <div class="col-md-10">            
+            <div class="col-md-5" style="float:right;">
+                <div class="col-md-12" style="padding-left:0px">
+                    <form id="searchform" action="." method="get">
+                        <div class="input-group">                        
+                          <input type="text" class="form-control col-md-6" id="myInput" nkeyup="queryRecords()" name="keyword" placeholder="Search">
+                          <span class="input-group-btn">
+                            <button class="btn btn-secondary glyphicon glyphicon-search" onclick="queryRecords()" type="button"></button>
+                          </span>                        
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>        
+    </div>    
+    <div class="content container">
+        <div class="row">            
+            <div class="col-md-10">
+                {% if contactList %}
+                    <table class="table table-reponsive table-condensed">
+                        <thead>
+                            <tr>                                    
+                                <th>FirstName</th>
+                                <th>LastName</th>
+                                <th>Email</th>
+                                <th>Mobile</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for contact in contactList %}            
+                                <tr>
+                                    <td>{{contact.FirstName}}</td>
+                                    <td>{{contact.LastName}}</td>
+                                    <td>{{contact.Email}}</td>
+                                    <td>{{contact.MobileNo}}</td>
+                                    <td width="20%">
+                                        <button type="button" class="btn btn-sm" onclick="document.location.href = {% url "contacts_edit" pk=contact.id %}">
+                                            <span class="glyphicon glyphicon-pencil"></span>
+                                        </button>
+                                        <button type="button" class="btn btn-sm" onclick="document.location.href = {% url "contact_delete" pk=contact.id %}">
+                                            <span class="glyphicon glyphicon-trash"></span> 
+                                        </button>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>                    
+                    </table>
+                {% else %}    
+                    <p>No Contacts are available.</p>
+                {% endif %}
+                <div class="col-md-12">
+                    {% if is_paginated %}
+                        <div class="col-md-2">
+                            {% if page_obj.has_previous %}
+                                <a href="/?page={{page_obj.previous_page_number}}" onclick="pagination()">Perivious</a>
+                            {% endif %}
+                        </div>                    
+                        <div class="col-md-2">
+                            <form action="." method="get">
+                                <select id="noOfRecord" data-value="{{pagesize}}" name="paginate_by">
+                                    <option value="">Select...</option>
+                                    <option value="5">2</option>
+                                    <option value="10">5</option>
+                                    <option value="50">10</option>
+                                    <option value="100">100</option>
+                                </select>
+                            </form>
+                        </div>
+                        <div class="col-md-2">
+                            {% if page_obj.has_next %}
+                                <a href="/?page={{page_obj.next_page_number}}" onclick="pagination()">Next</a>            
+                            {% endif %}
+                        </div>                    
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <script>
+            $(document).ready(function () {
+                $('#noOfRecord').on('change', function () {
+                    this.form.submit();
+                });
+
+                pagination = function (e) {
+                    event.target.setAttribute('href',event.target.getAttribute('href') + '&paginate_by=' + $('#noOfRecord').val());
+                    $(this).submit();
+                }
+
+                $("#noOfRecord").val($("#noOfRecord").attr('data-value'));
+                
+                queryRecords = function () {
+                    $('#searchform').submit();
+                }
+            });
+        </script>
+    </div>
+{% endblock %}

@@ -1,0 +1,15 @@
+F:\Kunal Projects\DjangoAssignment\ContactsAssgn\bin\Microsoft.PythonTools.WebRole.dll
+F:\Kunal Projects\DjangoAssignment\ContactsAssgn\obj\Debug\attach_server.py
+F:\Kunal Projects\DjangoAssignment\ContactsAssgn\obj\Debug\visualstudio_py_debugger.py
+F:\Kunal Projects\DjangoAssignment\ContactsAssgn\obj\Debug\visualstudio_py_repl.py
+F:\Kunal Projects\DjangoAssignment\ContactsAssgn\obj\Debug\visualstudio_py_util.py
+F:\Kunal Projects\DjangoAssignment\ContactsAssgn\obj\Debug\__init__.py
+F:\Kunal Projects\DjangoAssignment\ContactsAssgn\obj\Debug\__main__.py
+F:\Kunal Projects\DjangoAssignment\ContactsAssgn\bin\AzureSetup.cfg
+F:\Kunal Projects\DjangoAssignment\ContactsAssgn\bin\Microsoft.PythonTools.AzureSetup.exe
+F:\Kunal Projects\DjangoAssignment\ContactsAssgn\bin\Microsoft.PythonTools.AzureSetup.exe.config
+F:\Kunal Projects\DjangoAssignment\ContactsAssgn\bin\wfastcgi.py
+F:\Kunal Projects\DjangoAssignment\ContactsAssgn\obj\Debug\deployment-updated-orig-prefix.txt
+F:\Kunal Projects\DjangoAssignment\ContactsAssgn\ptvs_virtualenv_proxy.py
+F:\Kunal Projects\DjangoAssignment\ContactsAssgn\obj\Debug\web.config
+F:\Kunal Projects\DjangoAssignment\ContactsAssgn\obj\Debug\web.debug.config
