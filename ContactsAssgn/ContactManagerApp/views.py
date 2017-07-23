@@ -1,7 +1,8 @@
-from django.shortcuts import render, redirect
-from django.http import HttpResponseRedirect
+from django.shortcuts import redirect
 from django.views import generic
+from django.views.generic.edit import UpdateView, CreateView
 from .forms import PostForm
+from django.core.urlresolvers import reverse_lazy
 
 from .models import Contacts
 
@@ -36,36 +37,19 @@ class ContactsListview(generic.ListView):
             else:                
                 return self.request.GET.get('paginate_by', self.paginate_by)
 
-class ContactView(generic.edit.FormView):
+class ContactView(CreateView):
+    model = Contacts
     template_name = 'ContactManagerApp/contacts.html'
-    form_class = PostForm
-    success_url = '/'
+    success_url = reverse_lazy('contactlist')
+    fields = ['FirstName', 'LastName', 'Email', 'MobileNo']
 
-    def form_valid(self, form):
-        firtsname = form.cleaned_data['FirstName']
-        lastname = form.cleaned_data['LastName']
-        email = form.cleaned_data['Email']
-        mobileno = form.cleaned_data['MobileNo']
-        contact = Contacts(FirstName = firtsname, LastName=lastname, Email=email, MobileNo=mobileno)
-        contact.save()
-        return super(ContactView, self).form_valid(form)
-
-class DeleteContactView(generic.DeleteView):    
+class EditContact(UpdateView):
+    model = Contacts
     template_name = 'ContactManagerApp/contacts.html'
-    success_url = '/'
+    success_url = reverse_lazy('contactlist')
+    fields = ['FirstName', 'LastName', 'Email', 'MobileNo']
 
-
-class UpdateContactView(generic.UpdateView):
-
-
-
-#def contact_new(request):
-#    if request.method == "POST":
-#        form = PostForm(request.POST)
-#        if form.is_valid():
-#            Contacts = form.save(commit=False)
-#            Contacts.save()
-#            return HttpResponseRedirect('/')
-#    else:
-#        form = PostForm()
-#    return render(request, 'ContactManagerApp/contacts.html', {'form': form})
+def deleteContact(request, pk, template_name='ContactManagerApp/contact_delete.html'):
+    contact = get_object_or_404(Contacts, pk=pk)
+    contact.delete()
+    return redirect('contactlist')

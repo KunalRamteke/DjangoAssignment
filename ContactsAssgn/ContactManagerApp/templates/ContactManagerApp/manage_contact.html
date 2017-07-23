@@ -41,12 +41,12 @@
                                     <td>{{contact.Email}}</td>
                                     <td>{{contact.MobileNo}}</td>
                                     <td width="20%">
-                                        <button type="button" class="btn btn-sm" onclick="document.location.href = {% url "contacts_edit" pk=contact.id %}">
-                                            <span class="glyphicon glyphicon-pencil"></span>
-                                        </button>
-                                        <button type="button" class="btn btn-sm" onclick="document.location.href = {% url "contact_delete" pk=contact.id %}">
-                                            <span class="glyphicon glyphicon-trash"></span> 
-                                        </button>
+                                        <a class="btn btn-sm glyphicon glyphicon-pencil" href="{% url 'contact_edit' pk=contact.id %}">
+                                           
+                                        </a>
+                                        <a class="btn btn-sm glyphicon glyphicon-trash" href="{% url 'contact_delete' contact.id %}">
+                                            
+                                        </a>
                                     </td>
                                 </tr>
                             {% endfor %}
@@ -66,9 +66,9 @@
                             <form action="." method="get">
                                 <select id="noOfRecord" data-value="{{pagesize}}" name="paginate_by">
                                     <option value="">Select...</option>
-                                    <option value="5">2</option>
-                                    <option value="10">5</option>
-                                    <option value="50">10</option>
+                                    <option value="5">5</option>
+                                    <option value="10">10</option>
+                                    <option value="50">50</option>
                                     <option value="100">100</option>
                                 </select>
                             </form>

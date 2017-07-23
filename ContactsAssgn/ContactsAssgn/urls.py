@@ -19,8 +19,9 @@ urlpatterns = [
 
     # Uncomment the next line to enable the admin:
     # url(r'^admin/', include(admin.site.urls)),
+
     url(r'^$', views.ContactsListview.as_view(), name='contactlist'),
     url(r'^new/$', views.ContactView.as_view(), name='contact_new'),
-    url(r'^delete/(?P<pk>\d+)/$', views.DeleteContactView.as_view(), name='contact_delete',),
-    url(r'^edit/(?P<pk>\d+)/$', views.UpdateContactView.as_view(), name='contacts_edit',),
+    url(r'^delete/(?P<pk>[0-9]+)/$', views.deleteContact, name='contact_delete',),
+    url(r'^edit/(?P<pk>[0-9]+)/$', views.EditContact.as_view(), name='contact_edit',),
 ]

@@ -1,15 +1,18 @@
 ﻿
 {% extends 'ContactManagerApp/views/layout.html' %}
 {% block content %}
-    <h1>New post</h1>
-    
 
+    <h1>Contact</h1>
+    
     <div class="col-md-5">
         <form method="POST" class="post-form">{% csrf_token %}
             <table class="table table-reponsive">
             {{ form }}
             </table>
-            <button type="submit" class="save btn btn-default" style="float:right">Save</button>
+        <div class="col-md-6" style="float: right">
+            <button type="submit" class="save btn btn-default">Save</button>
+            <a class="save btn btn-primary"  href="{% url 'contactlist' %}">Cancel</a>
+        </div>
         </form>
     </div>
 {% endblock %}
